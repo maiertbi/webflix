@@ -19,20 +19,36 @@ for auth use:
 - jsonwebtoken
 - bcrypt (hashes passwords)
 
+## setup
+
+### backend
+
+We used Mongdb-community@6.0. To install and use this please this [docs](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-os-x/).
+
+Also [NodeJS](https://nodejs.org/en/download/) is needed. This also includes npm.
+
+Check if node.js is correctly installed with `node -v` and npm with `npm -v`.
+
+If needed, update npm via `npm install npm -g`.
+
+Then do the following commands:
+
+```bash
+cd backend/
+npm install
+```
+
 ## using the project
 
 If you want to start the project you have to do the following things.
 
-### backend
-
-In the backend folder:
-
 ```bash
-npm install
+cd backend/
 node index.js
 ```
 
-### frontend
+And in a new terminal (of the webflix folder) execute the following:
 
-In the frontend folder:
-
+```bash
+cd frontend/
+```

@@ -4,7 +4,12 @@ const mongoose = require('mongoose');
 const app = express();
 
 
-// connecting to mongodb
+// connecting to mongodb (if webflix is not created --> it will get initialized automatically)
+mongoose.connect('mongodb://localhost/webflix')
+  .then(() => console.log('Connected to MongoDB...'))
+  .catch(err => console.error('Could not connect to MongoDB...'));
+
+
 
 
 // using everything
