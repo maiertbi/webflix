@@ -10,6 +10,14 @@ When talking about node we used the following packages:
 
 - express
 - joi
+- mongoose
+
+for auth use:
+
+- config
+- lodash
+- jsonwebtoken
+- bcrypt (hashes passwords)
 
 ## using the project
 
