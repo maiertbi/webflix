@@ -1,4 +1,4 @@
-// const {Movie, validate} = require('../models/movie'); 
+const {Movie, validate} = require('../models/movie'); 
 // const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
@@ -39,10 +39,10 @@ router.get('/:key&:value', async (req, res) => {
 
 // add a movie
 router.post('/', async (req, res) => { 
-    // validation for movies --> const {Movie, validate} = require('../models/movie'); 
-    // const { error } = validate(req.body);
-    // if (error) return res.status(400).send(error.details[0].message);
+    const { error } = validate(req.body);
+    if (error) return res.status(400).send(error.details[0].message);
 
+    // console.log(typeof req.body.genres) !!!!
 
     const movie = new Movie({
         picture: req.body.picture,
