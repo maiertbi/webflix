@@ -40,16 +40,23 @@ const Movie = mongoose.model('Movies', new mongoose.Schema({
 }));
 
 function validateMovie(movie) {
-    const schema = {
+    const schema = Joi.object({
         picture: Joi.string(), // TODO: change for pictures
         title: Joi.string().min(5).max(100).required(),
         director: Joi.string().min(5).max(255).required(),
         published: Joi.string().pattern(/^(?:(?:19|20)[0-9]{2})$/).required(),
-        genre: Joi.string().min(4)
-    };
+        genre: Joi.string().min(4).valid('action', 'drama', 'horror', 'science fiction', 'thriller', 'crime')
+    });
 
-    return Joi.validate(movie, schema);
+    return schema.validate(movie);
 }
+
+function validateKey(key) {
+    const schemaKey = Joi.string().valid('title', 'director', 'published', 'genre');
+    return schemaKey.validate(key);
+}
+
 
 exports.Movie = Movie;
 exports.validate = validateMovie;
+exports.validateKey = validateKey;
