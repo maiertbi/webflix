@@ -43,9 +43,6 @@ Instead of *mySecureKey* you can instert anything you want. This is just for cre
 
 Everything should work on the backend side, if mongodbcommunity is running. When testing you just have to execute `node index.js`.
 
-- JSON Web Token
-- to log out --> delete token on client-side (ex. localStorage or localStorage)
-
 ## using the project
 
 If you want to start the project you have to do the following things.
