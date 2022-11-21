@@ -1,6 +1,5 @@
 const {Movie, validate, validateKey} = require('../models/movie'); 
 const mongoose = require('mongoose');
-const Joi = require('joi');
 const express = require('express');
 const router = express.Router();
 const _ = require('lodash');
@@ -17,7 +16,7 @@ router.get('/', async (req, res) => {
         movies = await Movie.findById(query.id);
     } else if (query.hasOwnProperty('key') && query.hasOwnProperty('value')) { // if key & value were passed
         const qKey = (query.key).toLowerCase().trim();
-        
+    
         // check if key is valid
         const {error} = validateKey(qKey);
         if (error) return res.status(400).send(error.details[0].message);
@@ -28,7 +27,6 @@ router.get('/', async (req, res) => {
     if (!movies) return res.status(404).send('No movies found or wrong queries passed.');
     res.send(movies);
 });
-
 
 
 // add a movie
@@ -49,44 +47,43 @@ router.post('/', async (req, res) => {
 });
 
 
+// delete a movie
+router.delete('/', async (req, res) => {
+    const query = req.query;
+    
+    // check if a id has been passed
+    if (!query.hasOwnProperty('id')) return res.status(400).send('No param called id has been found');;
 
+    const movie = await Movie.findByIdAndDelete(query.id);
+    if (!movie) return res.status(404).send('The movie with the given ID was not found.');
+
+    res.send(movie);
+});
 
 
 // change a movie
-    /*
-router.put('/:id', async (req, res) => {
+router.put('/', async (req, res) => {
+    const query = req.query;
+
+    // check if a id has been passed
+    if (!query.hasOwnProperty('id')) return res.status(400).send('No param called id has been found');;
+
+    // check if syntax of body is correct
     const { error } = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 
-    const genre = await Genre.findById(req.body.genreId);
-    if (!genre) return res.status(400).send('Invalid genre.');
-
-    const movie = await Movie.findByIdAndUpdate(req.params.id,
+    const movie = await Movie.findByIdAndUpdate(query.id,
         {
+            picture: req.body.picture,
             title: req.body.title,
-            genre: {
-                _id: genre._id,
-                name: genre.name
-            },
-            numberInStock: req.body.numberInStock,
-            dailyRentalRate: req.body.dailyRentalRate
+            director: req.body.director,
+            published: req.body.published,
+            genre: req.body.genre
         }, { new: true });
 
     if (!movie) return res.status(404).send('The movie with the given ID was not found.');
 
     res.send(movie);
 });
-    */
-
-
-
-// delete a movie
-router.delete('/:id', async (req, res) => {
-    const movie = await Movie.findByIdAndRemove(req.params.id);
-    if (!movie) return res.status(404).send('The movie with the given ID was not found.');
-
-    res.send(movie);
-});
-
 
 module.exports = router; 
