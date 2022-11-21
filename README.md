@@ -36,7 +36,13 @@ Then do the following commands:
 ```bash
 cd backend/
 npm install
+export weblix_jwtPrivateKey=mySecureKey
 ```
+
+Sophie:
+
+- JSON Web Token
+- to log out --> delete token on client-side (ex. localStorage or localStorage)
 
 ## using the project
 

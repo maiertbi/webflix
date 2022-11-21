@@ -1,4 +1,6 @@
 const {Movie, validate, validateKey} = require('../models/movie'); 
+const auth = require('../middleware/auth');
+const admin = require('../middleware/admin');
 const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
@@ -30,7 +32,7 @@ router.get('/', async (req, res) => {
 
 
 // add a movie
-router.post('/', async (req, res) => { 
+router.post('/', [auth, admin], async (req, res) => { 
     const { error } = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 
@@ -48,7 +50,7 @@ router.post('/', async (req, res) => {
 
 
 // delete a movie
-router.delete('/', async (req, res) => {
+router.delete('/', [auth, admin], async (req, res) => {
     const query = req.query;
     
     // check if a id has been passed
@@ -62,7 +64,7 @@ router.delete('/', async (req, res) => {
 
 
 // change a movie
-router.put('/', async (req, res) => {
+router.put('/', [auth, admin], async (req, res) => {
     const query = req.query;
 
     // check if a id has been passed

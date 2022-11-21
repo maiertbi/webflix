@@ -1,8 +1,16 @@
+const config = require('config');
 const movies = require('./routes/movies');
+const user = require('./routes/users');
+const auth = require('./routes/auth');
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
 
+// auth
+if (!config.get('jwtPrivateKey')) {
+  console.error('FATAL ERROR: jwtPrivateKey is not defined.');
+  process.exit(1);
+}
 
 // connecting to mongodb (if webflix is not created --> it will get initialized automatically)
 mongoose.connect('mongodb://localhost/webflix')
@@ -10,11 +18,11 @@ mongoose.connect('mongodb://localhost/webflix')
   .catch(err => console.error('Could not connect to MongoDB...'));
 
 
-
-
 // using everything
 app.use(express.json());
 app.use('/api/movies', movies);
+app.use('/api/user', user);
+app.use('/api/auth', auth);
 
 // setting up port/routes
 const port = process.env.PORT || 3000;
