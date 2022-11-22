@@ -36,7 +36,7 @@ Then do the following commands:
 ```bash
 cd backend/
 npm install
-export weblix_jwtPrivateKey=mySecureKey
+export webflix_jwtPrivateKey=mySecureKey
 ```
 
 Instead of *mySecureKey* you can instert anything you want. This is just for creating a local variable in order to have a secure key for using JSON Web Token.
