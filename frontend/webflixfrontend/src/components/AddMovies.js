@@ -1,54 +1,24 @@
-import React from 'react';
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 
+const AddMovies = () =>{
+    const { register, handleSubmit } = useForm();
+    const [data, setData] = useState("");
 
-let dialogStyles = {
-    width: '500px',
-    maxWidth: '100%',
-    margin: '0 auto',
-    position: 'fixed',
-    left: '50%',
-    top: '50%',
-    transform: 'translate(-50%,-50%)',
-    zIndex: '999',
-    backgroundColor: '#eee',
-    padding: '10px 20px 40px',
-    borderRadius: '8px',
-    display: 'flex',
-    flexDirection: 'column'
-};
-
-let dialogCloseButtonStyles = {
-    marginBottom: '15px',
-    padding: '3px 8px',
-    cursor: 'pointer',
-    borderRadius: '50%',
-    border: 'none',
-    width: '30px',
-    height: '30px',
-    fontWeight: 'bold',
-    alignSelf: 'flex-end'
-};
-
-
-class AddMovies extends Component {
-    render() {
-        let dialog = (
-            <div style={dialogStyles}>
-                <button style={dialogCloseButtonStyles} onClick={this.props.onClose}>x</button>
-
-                <div>{this.props.children}</div>
-            </div>
-        );
-
-        if (! this.props.isOpen) {
-            dialog = null;
-        }
-        return (
-            <div>
-                {dialog}
-            </div>
-        );
-    }
-}
+    return(
+        <form onSubmit={handleSubmit((data) => setData(JSON.stringify(data)))}>
+            <input {...register("title")} placeholder="Title of the movie" />
+            <select {...register("genre", { required: true })}>
+            <option value="">Select Genre...</option>
+            <option value="A">Drama</option>
+            <option value="B">Thriller</option>
+            <option value="C">Horror</option>
+            <option value="D">Science Fiction</option>
+            <option value="E">Crime</option>
+            </select>
+            <p>{data}</p>
+            <input type="submit" />
+      </form>
+    )};
 
 export default AddMovies;

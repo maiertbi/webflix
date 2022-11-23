@@ -3,11 +3,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import MovieList from './components/MovieList';
 import MovieListHeading from './components/MovieListHeading';
-import Search from './components/Search';
 import Favourites from './components/Favourites';
 import RemoveFavourites from './components/RemoveFavourites';
 import NavbarComp from './components/NavbarComp.js';
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import AddMovies from './components/AddMovies';
+import LogoutLogIn from './components/LogoutLogIn';
 
 const App = () => {
 	const [movies, setMovies] = useState([]);
@@ -22,8 +23,9 @@ const App = () => {
 
 		if (responseJson.Search) {
 			setMovies(responseJson.Search);
-		}
+		}  
 	};
+
   useEffect(() => {
 		getMovieRequest(searchValue);
 	}, [searchValue]);
@@ -58,31 +60,39 @@ const App = () => {
 	};
 
   return (
-      <ddiv className="App">
-      <NavbarComp searchValue={searchValue} setSearchValue={setSearchValue}/>
-      <div className='container-fluid movie-app'>
-        <div className='row d-flex align-items-center mt-4 mb-4'>
-          <MovieListHeading heading='Movies' />
-        </div>
-        <div className='row'>
-          <MovieList
-            movies={movies}
-            handleFavouritesClick={addFavouriteMovie}
-            favouriteComponent={Favourites}
-          />
-        </div>
-        <div className='row d-flex align-items-center mt-4 mb-4'>
-          <MovieListHeading heading='Favourites' />
-        </div>
-        <div className='row'>
-          <MovieList
-            movies={favourites}
-            handleFavouritesClick={removeFavouriteMovie}
-            favouriteComponent={RemoveFavourites}
-          />
-        </div>
-      </div>
-    </ddiv>
+      <div className="App">
+         <Router>
+          <NavbarComp searchValue={searchValue} setSearchValue={setSearchValue}/>
+          <Routes>
+          <Route path='/add' element={<AddMovies />} />
+          <Route path='/home' element={
+             <div className='container-fluid movie-app'>
+             <div className='row d-flex align-items-center mt-4 mb-4'>
+               <MovieListHeading heading='Movies' />
+             </div>
+             <div className='row'>
+               <MovieList
+                 movies={movies}
+                 handleFavouritesClick={addFavouriteMovie}
+                 favouriteComponent={Favourites}
+               />
+             </div>
+             <div className='row d-flex align-items-center mt-4 mb-4'>
+               <MovieListHeading heading='Favourites' />
+             </div>
+             <div className='row'>
+               <MovieList
+                 movies={favourites}
+                 handleFavouritesClick={removeFavouriteMovie}
+                 favouriteComponent={RemoveFavourites}
+               />
+             </div>
+           </div>
+          } />
+          <Route path='/logout' element={<LogoutLogIn />} />
+        </Routes>
+      </Router>
+    </div>
 	);
 };
 

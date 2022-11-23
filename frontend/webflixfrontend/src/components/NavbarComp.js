@@ -1,36 +1,52 @@
 import React from 'react';
 import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import {BrowserRouter as Router,
-  Routes ,Route, 
-        Link
-      } from 'react-router-dom';
+import {
+  Nav,
+  NavLink,
+  Bars,
+  NavMenu,
+  NavBtn,
+  NavBtnLink
+} from './NavbarElements';
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 const NabarComp =(props) =>{
+  const { register, handleSubmit } = useForm();
+  const [data, setData] = useState("");
+
       return (
-        <Router>
           <Navbar bg="dark" variant={"dark"} expand="lg">
             <Container fluid>
-              <Navbar.Brand as={Link} to={"/home"} href="#">MovieFLIX</Navbar.Brand>
               <Navbar.Toggle aria-controls="navbarScroll" />
               <Navbar.Collapse id="navbarScroll">
-                <Nav
-                  className="me-auto my-2 my-lg-0"
-                  style={{ maxHeight: '100px' }}
-                  navbarScroll
-                >
-
+                  <NavLink to={"/home"} activeStyle>MovieFLIX</NavLink>
                   <NavDropdown title="User Name" id="navbarScrollingDropdown">
-                    <NavDropdown.Item href="#action3">Logout</NavDropdown.Item>
+                    <NavDropdown.Item>
+                      <NavLink to={"/logout"} activeStyle >Logout</NavLink>
+                    </NavDropdown.Item>
                   </NavDropdown>
-                  <Nav.Link href="#">
+
+                  <NavLink to={"/add"} activeStyle>
                    + Add movie
-                  </Nav.Link>
-                </Nav>
+                  </NavLink>
+                
+                  <form onSubmit={handleSubmit((data) => setData(JSON.stringify(data)))}>
+                    <select {...register("genre", { required: true })}>
+                    <option value="">Choose Genre</option>
+                    <option value="A">Drama</option>
+                    <option value="B">Thriller</option>
+                    <option value="C">Horror</option>
+                    <option value="D">Science Fiction</option>
+                    <option value="E">Crime</option>
+                    </select>
+                    <p>{data}</p>
+                </form>
+
                 <Form className="d-flex">
                   <Form.Control
                     className='form-control'
@@ -43,7 +59,6 @@ const NabarComp =(props) =>{
               </Navbar.Collapse>
           </Container>
       </Navbar>
-    </Router>
       )
     }
 export default  NabarComp;
