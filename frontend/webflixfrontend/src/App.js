@@ -8,21 +8,24 @@ import RemoveFavourites from './components/RemoveFavourites';
 import NavbarComp from './components/NavbarComp.js';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AddMovies from './components/AddMovies';
-import LogoutLogIn from './components/LogoutLogIn';
+import LogIn from './components/LogIn';
+import SearchBox from './components/SearchBox';
+import axios from './api/axios';
 
 const App = () => {
 	const [movies, setMovies] = useState([]);
 	const [favourites, setFavourites] = useState([]);
 	const [searchValue, setSearchValue] = useState('');
 
-	const getMovieRequest = async (searchValue) => {
-		const url = `http://localhost:3000/api/movies/`;
+	const getMovieRequest = async () => {
 
-		const response = await fetch(url);
+		const response = await axios.get("/api/user/me").catch((error) => {console.log("Error",error);}); 
 		const responseJson = await response.json();
+    console.log("responseJson");
+   
 
-		if (responseJson.Search) {
-			setMovies(responseJson.Search);
+		if (responseJson.SearchBox) { //Search
+			setMovies(responseJson.SearchBox); //Search
 		}  
 	};
 
@@ -62,13 +65,14 @@ const App = () => {
   return (
       <div className="App">
          <Router>
-          <NavbarComp searchValue={searchValue} setSearchValue={setSearchValue}/>
+          <NavbarComp/>
           <Routes>
           <Route path='/add' element={<AddMovies />} />
           <Route path='/home' element={
              <div className='container-fluid movie-app'>
              <div className='row d-flex align-items-center mt-4 mb-4'>
-               <MovieListHeading heading='Movies' />
+               <MovieListHeading heading='Movies' /> 
+               <SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />
              </div>
              <div className='row'>
                <MovieList
@@ -89,11 +93,10 @@ const App = () => {
              </div>
            </div>
           } />
-          <Route path='/logout' element={<LogoutLogIn />} />
+          <Route path='/logout' element={<LogIn />} />
         </Routes>
       </Router>
     </div>
-	);
-};
-
+    );
+  }
 export default App;
