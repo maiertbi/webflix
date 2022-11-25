@@ -13,11 +13,20 @@ import {
   NavBtnLink
 } from './NavbarElements';
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useHistory } from "react";
 
 const NabarComp =(props) =>{
-  const { register, handleSubmit } = useForm();
-  const [data, setData] = useState("");
+/*  let user = JSON.parse(localStorage.getItem('user-info'));
+  const history = useHistory();
+  function logOut() {
+    localStorage.clear();
+    history.push('/login'); // /auth
+
+    <NavDropdown.Item onClick={logOut}>  
+                      Logout
+                    </NavDropdown.Item>
+  }*/ //logout
+
 
       return (
           <Navbar bg="dark" variant={"dark"} expand="lg">
@@ -25,10 +34,12 @@ const NabarComp =(props) =>{
               <Navbar.Toggle aria-controls="navbarScroll" />
               <Navbar.Collapse id="navbarScroll">
                   <NavLink to={"/home"} activeStyle>MovieFLIX</NavLink>
-                  <NavDropdown title="User Name" id="navbarScrollingDropdown">
-                    <NavDropdown.Item>
-                      <NavLink to={"/logout"} activeStyle >Logout</NavLink>
+                  <NavDropdown title="User Name" //{user && user.name && user.email}
+                   id="navbarScrollingDropdown">
+                    <NavDropdown.Item>  
+                      Logout
                     </NavDropdown.Item>
+                    <NavLink to={"/logout"} activeStyle >Logout</NavLink>
                   </NavDropdown>
 
                   <NavLink to={"/add"} activeStyle>
