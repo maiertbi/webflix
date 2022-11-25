@@ -67,6 +67,7 @@ const App = () => {
          <Router>
           <NavbarComp/>
           <Routes>
+          <Route path="/" element={<LogIn />} />
           <Route path='/add' element={<AddMovies />} />
           <Route path='/home' element={
              <div className='container movie-app'>
@@ -93,7 +94,7 @@ const App = () => {
              </div>
            </div>
           } />
-          <Route path='/logout' element={<LogIn />} />
+          
         </Routes>
       </Router>
     </div>
