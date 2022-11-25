@@ -1,6 +1,8 @@
 import { useRef, useState, useEffect, useContext } from 'react';
 import axios from '../api/axios.js';
 import AuthContext from '../context/AuthProvider';
+import App from '../App.css';
+
 const LOGIN_URL = '/auth';
 
 const LogIn = () => {
@@ -66,11 +68,12 @@ const LogIn = () => {
                 </section>
             ) : (
                 <section>
+                <div class="row">
                     <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                     <h1>Sign In</h1>
                     <form onSubmit={handleSubmit}>
-                    <div className="row">
-                            <div class="col-*-4">
+                    <div className="row justify-content-center">
+                            <div class="col-*-6">
                                 <label htmlFor="username">Username:</label>
                                 <input
                                     type="text"
@@ -82,7 +85,7 @@ const LogIn = () => {
                                     required
                                 />
                             </div>
-                            <div class="col-*-4">
+                            <div class="col-*-6">
                                 <label htmlFor="password">Password:</label>
                                     <input
                                         type="password"
@@ -92,12 +95,12 @@ const LogIn = () => {
                                         required
                                     />
                             </div>
-                            <div class="col-*-4">
-                                <button>Sign In</button>
+                            <div class="col-*-12">
+                                <button type="button" class="btn btn-light">Sign In</button>
                             </div>
                         </div>
                     </form>
-
+                    </div>
         </section>
             )}</div>
             </>
