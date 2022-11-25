@@ -29,25 +29,24 @@ const NabarComp =(props) =>{
 
 
       return (
-        <div classname="container-fluid">         
+        <div className="container-fluid">         
             <Navbar>
               <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
-                <div classname="flex-1"> 
-                  <NavLink class="navlink" to={"/home"} activeStyle>MovieFLIX</NavLink>
+                <div className="flex-1"> 
+                  <NavLink className="navlink" to={"/home"} activestyle="true">MovieFLIX</NavLink>
                   </div>
-                      <NavDropdown class="navlink" title="User Name" //{user && user.name && user.email}
+                      <NavDropdown className="navlink" title="User Name" //{user && user.name && user.email}
                         id="navbarScrollingDropdown">
                           <NavDropdown.Item>  
                             Logout
                           </NavDropdown.Item>
-                          <NavLink class="navlink" to={"/logout"} activeStyle >Logout</NavLink>
+                          <NavLink className="navlink" to={"/logout"} activestyle="true" >Logout</NavLink>
                       </NavDropdown>
                    
-                      <NavLink class="navlink" to={"/add"} activeStyle>
+                      <NavLink className="navlink" to={"/add"} activestyle="true">
                       + Add movie
-                      </NavLink>
-                  
+                      </NavLink>  
                 </Navbar.Collapse>
             </Navbar>       
         </div>

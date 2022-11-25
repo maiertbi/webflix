@@ -11,14 +11,14 @@ const AddMovies = () =>{
                 <h1>Add your Movie</h1>
                     <form onSubmit={handleSubmit((data) => setData(JSON.stringify(data)))}>
                         <div className="row">
-                            <div class="col-*-4">
+                            <div className="col-*-4">
                                 <input {...register("title")} placeholder="Title of the movie" />
                                 <input {...register("director")} placeholder="Director" />
                             </div>
                             
-                            <div class="col-*-4">
+                            <div className="col-*-4">
                                 <input {...register("published")} placeholder="Publish year" />
-                                    <select class="selectGenre" {...register("genre", { required: true })}>
+                                    <select className="selectGenre" {...register("genre", { required: true })}>
                                         <option value="">Select Genre...</option>
                                         <option value="A">Drama</option>
                                         <option value="B">Thriller</option>
@@ -28,7 +28,7 @@ const AddMovies = () =>{
                                     </select>
                                 <p>{data}</p>
                             </div>
-                            <div class="col-*-4 sendmovieBtn">
+                            <div className="col-*-4 sendmovieBtn">
                                 <input type="submit"/>
                             </div>
                         </div>
