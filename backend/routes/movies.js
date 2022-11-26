@@ -23,7 +23,11 @@ router.get('/', async (req, res) => {
         const {error} = validateKey(qKey);
         if (error) return res.status(400).send(error.details[0].message);
 
-        movies = await Movie.find({[qKey]: (query.value).toLowerCase().trim()});
+        // movies = await Movie.find({[qKey]: (query.value).toLowerCase().trim()});
+        movies = await Movie.find({[qKey]: new RegExp((query.value).toLowerCase().trim())});
+
+
+
     }
 
     if (!movies) return res.status(404).send('No movies found or wrong queries passed.');
