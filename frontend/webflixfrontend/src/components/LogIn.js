@@ -4,7 +4,7 @@ import AuthContext from '../context/AuthProvider';
 import { createRoot } from 'react-dom/client';
 import App from '../App.css';
 
-const LOGIN_URL = '/auth';
+const LOGIN_URL = '/api/auth';
 
 const LogIn = () => {
     const { setAuth } = useContext(AuthContext);
@@ -28,17 +28,23 @@ const LogIn = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.post(LOGIN_URL,
-                JSON.stringify({ user, pwd }),
-                {
-                    headers: { 'Content-Type': 'application/json' },
-                    withCredentials: true
-                }
-            );
+            const response = await fetch("http://localhost:3000/api/user/",
+            {
+                body:JSON.stringify({ email:user, password:pwd}), method: 'POST',
+
+            headers: {
+                "Content-Type": "application/json",
+            },});
+
+            console.log(response);
+            const json = await response.json();
+            console.log(json);
+
             console.log(JSON.stringify(response?.data));
             //console.log(JSON.stringify(response));
             const accessToken = response?.data?.accessToken;
             const email = response?.data?.email;
+
             setAuth({ user, pwd, email, accessToken });
             setUser('');
             setPwd('');
@@ -97,7 +103,7 @@ const LogIn = () => {
                                     />
                             </div>
                             <div className="col-*-12">
-                                <button type="button" className="btn btn-light">Sign In</button>
+                                <button type="button" className="btn btn-light" onClick={handleSubmit}>Sign In</button>
                             </div>
                         </div>
                     </form>

@@ -19,9 +19,10 @@ const App = () => {
 
 	const getMovieRequest = async () => {
 
-		const response = await axios.get("/api/user/me").catch((error) => {console.log("Error",error);}); 
+		const response = await fetch("http://localhost:3000/api/movies/").catch((error) => {console.log("Error",error);}); 
+    console.log(response);
 		const responseJson = await response.json();
-    console.log("responseJson");
+   console.log(responseJson);
    
 
 		if (responseJson.SearchBox) { //Search
