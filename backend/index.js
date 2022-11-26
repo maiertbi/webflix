@@ -6,7 +6,7 @@ const auth = require('./routes/auth');
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
-
+app.use(cors());
 // auth
 if (!config.get('jwtPrivateKey')) {
   console.error('FATAL ERROR: jwtPrivateKey is not defined.');
@@ -35,7 +35,7 @@ const corsOptions = {
 
 // using everything
 app.use(express.json());
-app.use(cors()); // cors(corsOptions)
+ // cors(corsOptions)
 
 
 app.use('/api/movies', movies);

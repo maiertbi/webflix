@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
@@ -6,17 +7,34 @@ const AddMovies = () =>{
     const [data, setData] = useState("");
 
     //fetch api 
+
+    const handler = () => {
+        try {
+            axios.defaults.headers.common['x-auth-token'] = `${localStorage.getItem('userData')}`
+            const request = async () => {
+                let result = await axios.post('http://localhost:3000/api/movies', {
+                    picture: "This is a picture", 
+                    title: "Test3",
+                    director: "Hans Zimmer",
+                    genre: "action",
+                    published: "2019"
+                })
+                console.log(result);
+            }
+            request();
+            
+        } catch (error) {
+            
+        }
+    }
     const responseAdd = fetch("http://localhost:3000/api/movies",
     {
     body:JSON.stringify({}), method: 'POST',
 
     headers: {
     "Content-Type": "application/json",
-    },});
 
-    console.log(responseAdd);
-            const jsonAdd = responseAdd.json();
-            console.log(jsonAdd);
+    },});
 
     return(
         <div className="flex-1 justify-content-center">
@@ -42,7 +60,7 @@ const AddMovies = () =>{
                                 <p>{data}</p>
                             </div>
                             <div className="col-*-4 sendmovieBtn">
-                                <input type="submit"/>
+                                <input type="submit" onClick={() => handler}/>
                             </div>
                         </div>
                     </form>

@@ -19,15 +19,18 @@ const App = () => {
 
 	const getMovieRequest = async () => {
 
-		const response = await fetch("http://localhost:3000/api/movies/").catch((error) => {console.log("Error",error);}); 
-    console.log(response);
-		const responseJson = await response.json();
-   console.log(responseJson);
+		const response = await axios.get("http://localhost:3000/api/movies/")
+    
+    //.catch((error) => {console.log("Error",error);}); 
+    console.log(response.data[0]);
+    setMovies(response.data)
+		//const responseJson = await response.json();
+   //console.log(responseJson);
    
 
-		if (responseJson.SearchBox) { //Search
-			setMovies(responseJson.SearchBox); //Search
-		}  
+		//if (responseJson.SearchBox) { //Search
+		//	setMovies(responseJson.SearchBox); //Search
+	//	}  
 	};
 
   useEffect(() => {

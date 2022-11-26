@@ -3,10 +3,12 @@ import axios from '../api/axios.js';
 import AuthContext from '../context/AuthProvider';
 import { createRoot } from 'react-dom/client';
 import App from '../App.css';
+import { useNavigation  } from 'react-router-dom';
 
 const LOGIN_URL = '/api/auth';
 
 const LogIn = () => {
+    let navigate = useNavigation;
     const { setAuth } = useContext(AuthContext);
     const userRef = useRef();
     const errRef = useRef();
@@ -24,43 +26,61 @@ const LogIn = () => {
         setErrMsg('');
     }, [user, pwd])
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
 
-        try {
-            const response = await fetch("http://localhost:3000/api/user/",
-            {
-                body:JSON.stringify({ email:user, password:pwd}), method: 'POST',
-
-            headers: {
-                "Content-Type": "application/json",
-            },});
-
-            console.log(response);
-            const json = await response.json();
-            console.log(json);
-
-            console.log(JSON.stringify(response?.data));
-            //console.log(JSON.stringify(response));
-            const accessToken = response?.data?.accessToken;
-            const email = response?.data?.email;
-
-            setAuth({ user, pwd, email, accessToken });
-            setUser('');
-            setPwd('');
-            setSuccess(true);
-        } catch (err) {
-            if (!err?.response) {
-                setErrMsg('No Server Response');
-            } else if (err.response?.status === 400) {
-                setErrMsg('Missing Username or Password');
-            } else if (err.response?.status === 401) {
-                setErrMsg('Unauthorized');
-            } else {
-                setErrMsg('Login Failed');
+    const handleSubmit = (e) => {
+        const handleSubmit2 = async (e) => {
+            //e.preventDefault();
+    
+            try {
+                const response = await axios.post("http://localhost:3000/api/auth/", { 
+                    email: "tbimaier2@gmail.com",
+                    password: "helloWorld234"
+                }
+                );
+    
+                /*{
+                    body: JSON.stringify({ email:user, password:pwd}), 
+                    method: 'POST',
+                    headers: { "Content-Type": "application/json" },
+                }*/
+                console.log(response);
+                console.log("hi1");
+                //const json = await response.json();
+                const json = 0;
+                console.log("hi2");
+                //console.log(await json);
+    
+                console.log(JSON.stringify(response?.data));
+                //console.log(JSON.stringify(response));
+    
+                const accessToken = response?.data?.accessToken;
+                const email = response?.data?.email;
+                localStorage.setItem('userData', JSON.stringify(response.data));
+            
+    
+                setAuth({pwd, email, accessToken });
+                setUser('');
+                setPwd('');
+                setSuccess(true);
+                setTimeout(() => {
+                    navigate('/home', {replace: true})
+                }, 800)
+            } catch (err) {
+                console.log(err);
+                if (!err?.response) {
+                    setErrMsg('No Server Response');
+                } else if (err.response?.status === 400) {
+                    setErrMsg('Missing Username or Password');
+                } else if (err.response?.status === 401) {
+                    setErrMsg('Unauthorized');
+                } else {
+                    setErrMsg('Login Failed');
+                }
+                errRef.current.focus();
             }
-            errRef.current.focus();
         }
+        handleSubmit2();
+
     }
 
     return (
