@@ -74,13 +74,13 @@ Be aware that most of the times, when dealing with users, you will get back a JW
 We provided a jsonFile for *Postman* with sample HTTP requests into the backend folder. **It is not guaranteed that the requests will work**. You probably have to change some data in order to get it working.
 
 ## Error Messages
-Access to fetch - ist fehlgeschlagen wegen der "CORS-policy" - No Access-Controll-Allow-Origin 
+
+Access to fetch - ist fehlgeschlagen wegen der "CORS-policy" - No Access-Controll-Allow-Origin
 
 (wie schon erklärt man will Daten von A nach B fetchen und wird vom Browser geblockt)
-Mit Ajax hat es den Fehler zum Teil behoben vorher hab ich die Url in der app.js datei versucht zu fetchen aber kein erfolg. 
+Mit Ajax hat es den Fehler zum Teil behoben vorher hab ich die Url in der app.js datei versucht zu fetchen aber kein erfolg.
 
-
-Aber neuer Error kam auf weil der (user) token nicht übergeben wurde. 
+Aber neuer Error kam auf weil der (user) token nicht übergeben wurde.
 Fehlermeldung: Request failed with status code 404.
 
 Da hat Fabi gemeint den könnte man im Header hinzufügen. ("header:" befindet sich im File axios.js und das im Ordner api) - Hab es auskommentiert. Dort sollte der User token stehen. Da der bei uns aber eigentlich bei jedem sign in anders ist - hab ich nicht gewusst wie ich den angeben soll.  
