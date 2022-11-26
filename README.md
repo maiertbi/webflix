@@ -55,7 +55,9 @@ node index.js
 And in a new terminal (of the webflix folder) execute the following:
 
 ```bash
-cd frontend/
+cd frontend/webflixfrontend
+npm install
+npm start
 ```
 
 ## developing
