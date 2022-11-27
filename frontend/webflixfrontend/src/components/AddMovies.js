@@ -1,10 +1,11 @@
 import axios from "axios";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useRef } from "react";
 
 const AddMovies = () => {
-    // const { register, handleSubmit } = useForm();
-    // const [data, setData] = useState("");
+    const errRef = useRef();
+    const [errMsg, setErrMsg] = useState("");
 
     const options = {
     headers: {'x-auth-token': localStorage.getItem("userData")}
@@ -30,6 +31,16 @@ const AddMovies = () => {
             console.log(response?.data);
         } catch (err) {
             console.error(err?.response);
+
+            if (!err?.response) {
+                setErrMsg("No Server Response");
+            } else if (err.response?.status === 400) {
+                setErrMsg("Missing userToken or wrong input. Please check that it is a valid year.");
+            } else if (err.response?.status === 403) {
+                setErrMsg("Unauthorized");
+            } else {
+                setErrMsg("Failed");
+            }
         }
     };
 
@@ -65,6 +76,14 @@ const AddMovies = () => {
                         </div>
                     </div>
                 </form>
+
+                <p
+                ref={errRef}
+                className={errMsg ? "errmsg" : "offscreen"}
+                aria-live="assertive">
+                {errMsg}
+              </p>
+
             </div>
         </div>
     );

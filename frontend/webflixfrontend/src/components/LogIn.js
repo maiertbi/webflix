@@ -4,6 +4,7 @@ import AuthContext from "../context/AuthProvider";
 import { createRoot } from "react-dom/client";
 import App from "../App.css";
 import { useNavigation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const LOGIN_URL = "/api/auth";
 
@@ -66,9 +67,9 @@ const LogIn = () => {
           <section>
             <h1>You are logged in!</h1>
             <br />
-            <p>
-              <a href="#">Go to Home</a>
-            </p>
+            <Link to={"/home"}>
+              <button>Go to Home</button>
+            </Link>
           </section>
         ) : (
           <section>
