@@ -15,17 +15,13 @@ import {
 import { useState } from "react";
 import { useHistory } from "react";
 
-const NabarComp =(props) =>{
-/*  let user = JSON.parse(localStorage.getItem('user-info'));
+const NavbarComp =(props) =>{
+/* let user = JSON.parse(localStorage.getItem('user-info'));
   const history = useHistory();
   function logOut() {
     localStorage.clear();
-    history.push('/login'); // /auth
-
-    <NavDropdown.Item onClick={logOut}>  
-                      Logout
-                    </NavDropdown.Item>
-  }*/ //logout
+    history.push('/auth'); // /auth
+  }*/ //logout onClick={logOut}
 
 
       return (
@@ -36,7 +32,7 @@ const NabarComp =(props) =>{
                 <div className="flex-1"> 
                   <NavLink className="navlink" to={"/home"} activestyle="true">MovieFLIX</NavLink>
                   </div>
-                      <NavDropdown className="navlink" title="User Name" //{user && user.name && user.email}
+                      <NavDropdown className="navlink" title="Username" //{user && user.name && user.email}
                         id="navbarScrollingDropdown">
                           <NavDropdown.Item>  
                             Logout
@@ -52,4 +48,4 @@ const NabarComp =(props) =>{
         </div>
       )
     }
-export default  NabarComp;
+export default  NavbarComp;

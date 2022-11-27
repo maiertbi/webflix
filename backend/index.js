@@ -34,7 +34,7 @@ const corsOptions = {
 
 
 // using everything
-app.use(cors) // cors(corsOptions)
+app.use(cors()) 
 app.use(express.json());
 
 app.use('/api/movies', movies);
