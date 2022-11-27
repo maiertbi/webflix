@@ -6,6 +6,7 @@ import { useRef } from "react";
 const AddMovies = () => {
     const errRef = useRef();
     const [errMsg, setErrMsg] = useState("");
+    const [success, setSuccess] = useState(false);
 
     const options = {
     headers: {'x-auth-token': localStorage.getItem("userData")}
@@ -26,7 +27,8 @@ const AddMovies = () => {
                 genre: genr,
                 published: year,
             }, options);
-            
+
+            setSuccess(true); 
             // do something here
             console.log(response?.data);
         } catch (err) {
@@ -46,47 +48,61 @@ const AddMovies = () => {
 
 
     return (
-        <div className="flex-1 justify-content-center">
-            <div className="container">
-                <h1>Add your Movie</h1>
-                <form onSubmit={addToDb}>
-                    <div className="row">
-                        <div className="col-*-4">
-                            <input id="title" onChange={(e) => setTitle(e.target.value)} placeholder="Title of the movie" />
-                            <input id="director" onChange={(e) => setDirector(e.target.value)} placeholder="Director" />
-                        </div>
+        <>
+        <div className="container">
+        {success ? (
+          <section>
+            <h1>Movie added!</h1>
+          </section>
+        ) : (
+          <section>
+                <div className="flex-1 justify-content-center">
+                    <div className="container">
+                        <h1>Add your Movie</h1>
+                        <form onSubmit={addToDb}>
+                            <div className="row">
+                                <div className="col-*-4">
+                                    <input id="title" onChange={(e) => setTitle(e.target.value)} placeholder="Title of the movie" />
+                                    <input id="director" onChange={(e) => setDirector(e.target.value)} placeholder="Director" />
+                                </div>
 
-                        <div className="col-*-4">
-                            <input  id="published" onChange={(e) => setYear(e.target.value)} placeholder="Publish year" />
+                                <div className="col-*-4">
+                                    <input  id="published" onChange={(e) => setYear(e.target.value)} placeholder="Publish year" />
 
-                            <select className="selectGenre" id="genre" onChange={(e) => setGenre(e.target.value)}>
-                                <option value="">Select Genre...</option>
-                                <option value="drama">Drama</option>
-                                <option value="thriller">Thriller</option>
-                                <option value="horror">Horror</option>
-                                <option value="science fiction">Science Fiction</option>
-                                <option value="crime">Crime</option>
-                                <option value="action">Action</option>
-                            </select>
-                        </div>
-                        <div className="col-*-4 sendmovieBtn">
-                            <button type="button" className="btn btn-light" onClick={addToDb}>
-                                Send
-                            </button>
-                        </div>
+                                    <select className="selectGenre" id="genre" onChange={(e) => setGenre(e.target.value)}>
+                                        <option value="">Select Genre...</option>
+                                        <option value="drama">Drama</option>
+                                        <option value="thriller">Thriller</option>
+                                        <option value="horror">Horror</option>
+                                        <option value="science fiction">Science Fiction</option>
+                                        <option value="crime">Crime</option>
+                                        <option value="action">Action</option>
+                                    </select>
+                                </div>
+                                <div className="col-*-4 sendmovieBtn">
+                                    <button type="button" className="btn btn-light" onClick={addToDb}>
+                                        Send
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <p
+                            ref={errRef}
+                            className={errMsg ? "errmsg" : "offscreen"}
+                            aria-live="assertive">
+                            {errMsg}
+                        </p>
+
                     </div>
-                </form>
-
-                <p
-                ref={errRef}
-                className={errMsg ? "errmsg" : "offscreen"}
-                aria-live="assertive">
-                {errMsg}
-              </p>
-
+                </div>
+             </section>   
+            )}
             </div>
-        </div>
+        </>
+        
     );
+   
 };
 
 export default AddMovies;
