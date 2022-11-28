@@ -14,7 +14,7 @@ const App = () => {
   return (
     <div className="App">
       <Router>
-        <NavbarComp />
+        
         <Routes>
           <Route path="/" element={<LogIn />} />
           <Route path="/add" element={<AddMovies />} />

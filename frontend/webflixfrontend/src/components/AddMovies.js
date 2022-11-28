@@ -2,6 +2,8 @@ import axios from "axios";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useRef } from "react";
+import NavbarComp from './NavbarComp.js';
+
 
 const AddMovies = () => {
     const errRef = useRef();
@@ -49,6 +51,7 @@ const AddMovies = () => {
 
     return (
         <>
+        <NavbarComp />
         <div className="container">
         {success ? (
           <section>
@@ -56,19 +59,18 @@ const AddMovies = () => {
           </section>
         ) : (
           <section>
-                <div className="flex-1 justify-content-center">
-                    <div className="container">
+            <div className="container">
+                <div className="row">
+                <div className="col-*-12 " align="center"> 
                         <h1>Add your Movie</h1>
                         <form onSubmit={addToDb}>
                             <div className="row">
                                 <div className="col-*-4">
-                                    <input id="title" onChange={(e) => setTitle(e.target.value)} placeholder="Title of the movie" />
-                                    <input id="director" onChange={(e) => setDirector(e.target.value)} placeholder="Director" />
+                                        <input id="title" onChange={(e) => setTitle(e.target.value)} placeholder="Title of the movie" />
+                                        <input id="director" onChange={(e) => setDirector(e.target.value)} placeholder="Director" />
                                 </div>
-
                                 <div className="col-*-4">
                                     <input  id="published" onChange={(e) => setYear(e.target.value)} placeholder="Publish year" />
-
                                     <select className="selectGenre" id="genre" onChange={(e) => setGenre(e.target.value)}>
                                         <option value="">Select Genre...</option>
                                         <option value="drama">Drama</option>
@@ -86,7 +88,8 @@ const AddMovies = () => {
                                 </div>
                             </div>
                         </form>
-
+                     </div>
+    
                         <p
                             ref={errRef}
                             className={errMsg ? "errmsg" : "offscreen"}

@@ -1,15 +1,11 @@
 import { useRef, useState, useEffect, useContext } from "react";
 import axios from "../api/axios.js";
 import AuthContext from "../context/AuthProvider";
-import { createRoot } from "react-dom/client";
-import App from "../App.css";
 import { useNavigation } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-const LOGIN_URL = "/api/auth";
 
 const LogIn = () => {
-  let navigate = useNavigation;
   const { setAuth } = useContext(AuthContext);
   const userRef = useRef();
   const errRef = useRef();
@@ -62,7 +58,7 @@ const LogIn = () => {
 
   return (
     <>
-      <div className="container">
+      <div className="container-fluid d-flex justify-content-center">
         {success ? (
           <section>
             <h1>You are logged in!</h1>
@@ -73,18 +69,18 @@ const LogIn = () => {
           </section>
         ) : (
           <section>
-            <div className="row">
+            <div className="row ">
               <p
                 ref={errRef}
                 className={errMsg ? "errmsg" : "offscreen"}
                 aria-live="assertive"
               >
                 {errMsg}
-              </p>
-              <h1>Sign In</h1>
-              <form onSubmit={login}>
-                <div className="row justify-content-center">
-                  <div className="col-*-6">
+              </p> 
+              <div className="row">
+                <h1>Sign In</h1>
+                <form onSubmit={login}>
+                  <div >
                     <label htmlFor="username">Username:</label>
                     <input
                       type="text"
@@ -96,7 +92,7 @@ const LogIn = () => {
                       required
                     />
                   </div>
-                  <div className="col-*-6">
+                  <div >
                     <label htmlFor="password">Password:</label>
                     <input
                       type="password"
@@ -106,7 +102,7 @@ const LogIn = () => {
                       required
                     />
                   </div>
-                  <div className="col-*-12">
+                  <div >
                     <button
                       type="button"
                       className="btn btn-light"
@@ -115,8 +111,8 @@ const LogIn = () => {
                       Sign In
                     </button>
                   </div>
-                </div>
-              </form>
+                </form>
+              </div>
             </div>
           </section>
         )}

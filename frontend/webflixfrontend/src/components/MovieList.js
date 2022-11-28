@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react';
 import image from './pic1.jpg';
 import { Link } from 'react-router-dom';
 import axios from '../api/axios';
-import Favourites from '../components/Favourites';
-import MovieListHeading from '../components/MovieListHeading';
-import SearchBox from '../components/SearchBox';
-import RemoveFavourites from './RemoveFavourites.js';
+import Favourites from '../components/small/Favourites';
+import RemoveFavourites from './small/RemoveFavourites.js';
+import NavbarComp from './NavbarComp.js';
 
 
 const MovieList = (props) => {
@@ -70,66 +69,73 @@ const MovieList = (props) => {
 		  setFavourites(movieFavourites);
 		}
 	  }, []);
+
+
+	const saveCurrIdToLocal = (id) => {
+		localStorage.setItem("curr-id", id);
+	};
 	
 	return (
 		<>
+		<NavbarComp />
+		 <div className="flex-d justify-content-center">
 			<div className="container movie-app">
-				<div className="row d-flex align-items-center mt-4 mb-4">
-				<MovieListHeading heading="Movies" />
-				<select className="selectGenre" id="searchKey" onChange={(e) => setSearchKey(e.target.value)}>
-					<option value="">Select SearchKey...</option>
-					<option value="title">Title</option>
-					<option value="director">Director</option>
-					<option value="year">Year</option>
-					<option value="genre">Genre</option>
-                </select>
-				<div className='col col-sm-4'>
-					<input
-						className='form-control'
-						value={searchValue}
-						onChange={(event) => setSearchValue(event.target.value)}
-						placeholder='Type to search...'>
-					</input>
-				</div>
-				</div>
 				<div className="row">
-					{movies.map((movie, id) => (
-						<div key={id} className='image-container'>
-							<img src={image} alt='movie'></img> 
-					
-							<div className="heart" key="{item}" onClick={() => addFavouriteMovie(movie)}>
-								<Favourites/>
+					<h1>Movies</h1>
+					<select className="selectGenre" id="searchKey" onChange={(e) => setSearchKey(e.target.value)}>
+						<option value="">Select SearchKey...</option>
+						<option value="title">Title</option>
+						<option value="director">Director</option>
+						<option value="year">Year</option>
+						<option value="genre">Genre</option>
+					</select>
+						<input
+							className='form-control'
+							value={searchValue}
+							onChange={(event) => setSearchValue(event.target.value)}
+							placeholder='Type to search...'>
+						</input>
+				</div>	
+			
+					<div className="row">
+						{movies.map((movie, id) => (
+							<div key={id} className="image-container justify-content-center">
+								<img src={image} alt='movie'></img> 
+						
+								<div className="heart" key="{item}" onClick={() => addFavouriteMovie(movie)}>
+									<Favourites/>
+								</div>
+								<div className="moviename">
+									<Link to={"/movies"}>
+										<button className="btn btn-dark" onClick={() => saveCurrIdToLocal(movie._id)}>{movie.title}</button>
+									</Link>
+								</div>
 							</div>
-							<div className="moviename">
-								<Link to={"/movies"}>
-									<button className="movieBtn">{movie.title}</button>
-								</Link>
-							</div>
-						</div>
-					))}
-				</div>
+						))}
+					</div>
 
-				<div className="row d-flex align-items-center mt-4 mb-4">
-				<MovieListHeading heading="Favourites" />
-				</div>
+					<div className="row">
+						<h1>Favourites</h1>
+					</div>
 
-				<div className="row">
-					{favourites.map((movie, id) => (
-						<div key={id} className='image-container'>
-							<img src={image} alt='movie'></img> 
-					
-							<div className="heart" key="{item}" onClick={() => removeFavouriteMovie(movie)}>
-								<RemoveFavourites/>
-							</div>
-							<div className="moviename">
-								<Link to={"/movies"}>
-									<button className="movieBtn">{movie.title}</button>
-								</Link>
-							</div>
+						<div className="row">
+							{favourites.map((movie, id) => (
+								<div key={id} className='image-container'>
+									<img src={image} alt='movie'></img> 
+							
+									<div className="heart" key="{item}" onClick={() => removeFavouriteMovie(movie)}>
+										<RemoveFavourites/>
+									</div>
+									<div className="moviename">
+										<Link to={"/movies"}>
+											<button className="btn btn-dark" onClick={() => saveCurrIdToLocal(movie.id)}>{movie.title}</button>
+										</Link>
+									</div>
+								</div>
+							))}
 						</div>
-					))}
+					</div>
 				</div>
-			</div>
 		</>
 	);
 };

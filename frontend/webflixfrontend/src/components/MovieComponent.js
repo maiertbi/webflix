@@ -4,6 +4,9 @@ import { useForm } from "react-hook-form";
 import { useRef } from "react";
 import { useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import NavbarComp from './NavbarComp.js';
+
 
 
 const MovieComponent = () => {
@@ -81,6 +84,7 @@ const MovieComponent = () => {
   const deleteMovie = async function () {
     try {
       const response = await axios.delete("http://localhost:3000/api/movies/", options);
+      localStorage.setItem("curr-id", "");
     } catch (err) {
       console.error(err?.response);
     }
@@ -88,41 +92,47 @@ const MovieComponent = () => {
 
   return (
     <>
+    <NavbarComp />
     <div className="container">
-        <h1>Change your Movie</h1>
-           <form >
-                <div className="row">
-                    <div className="col-*-4">
-                        <input id="title" value={titl} onChange={(e) => setTitle(e.target.value)} />
-                        <input id="director" value={direct} onChange={(e) => setDirector(e.target.value)}  />
-                    </div>
+        <div className="row">
+        <div className="col-*-12 " align="center"> 
+            <h1>Change your Movie</h1>
+            <form >
+                    <div className="row">
+                        <div className="col-*-4">
+                            <input id="title" value={titl} onChange={(e) => setTitle(e.target.value)} />
+                            <input id="director" value={direct} onChange={(e) => setDirector(e.target.value)}  />
+                        </div>
 
-                    <div className="col-*-4">
-                        <input value={year} id="published" onChange={(e) => setYear(e.target.value)} />
+                        <div className="col-*-4">
+                            <input value={year} id="published" onChange={(e) => setYear(e.target.value)} />
 
-                        <select className="selectGenre" value={genr} id="genre" onChange={(e) => setGenre(e.target.value)}>
-                            <option value="drama">Drama</option>
-                            <option value="thriller">Thriller</option>
-                            <option value="horror">Horror</option>
-                            <option value="science fiction">Science Fiction</option>
-                            <option value="crime">Crime</option>
-                            <option value="action">Action</option>
-                        </select>
-                     </div>
-                            <div className="col-*-4 sendmovieBtn">
+                            <select className="selectGenre" value={genr} id="genre" onChange={(e) => setGenre(e.target.value)}>
+                                <option value="drama">Drama</option>
+                                <option value="thriller">Thriller</option>
+                                <option value="horror">Horror</option>
+                                <option value="science fiction">Science Fiction</option>
+                                <option value="crime">Crime</option>
+                                <option value="action">Action</option>
+                            </select>
+                        </div> 
+
+                        <Link to={"/home"}>
+                            <div className="col-*-4">
                                 <button type="button" className="btn btn-light" onClick={changeMovie}>
                                     Update
-                                </button>
-                            </div>
-
-                            <div className="col-*-4 sendmovieBtn">
-                                <button type="button" className="btn btn-light" onClick={deleteMovie}>
-                                    Delete
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-
+                                </button> 
+                            </div> 
+                                <div className="col-*-4">
+                                    <button type="button" className="btn btn-danger" onClick={deleteMovie}>
+                                        Delete
+                                    </button>
+                                </div>
+                        </Link>
+                </div>
+                </form>
+             </div>
+        </div>   
     </div>
     </>
   );

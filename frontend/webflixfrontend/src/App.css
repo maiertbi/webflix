@@ -18,6 +18,15 @@ h1 {
   letter-spacing: 0.9px;
 }
 
+.addfav{
+	width: 15rem;
+}
+
+.bi{
+	text-align: center;
+}
+
+
 dt{
   margin-bottom: 20px;
   margin-top: 20px;
@@ -34,15 +43,6 @@ label {
 	margin-right: 10px;
 }
 
-.btn{
-	width: 20.5rem;
-	margin-top: 10px;
-}
-
-.sendmovieBtn{
-	width: 30.5rem;
-}
-
 .selectGenre{
 	width: 15rem;
 	height: 2rem;
@@ -55,6 +55,38 @@ nav {
 
 nav:link {
 	text-decoration: none;
+}
+
+.heart {
+	display: flex;
+	justify-content: center;
+	width: 22.5rem;
+	background-color: #191a1b;
+}
+
+.moviename{
+	display: flex;
+	justify-content: center;
+	width: 22.5rem;
+	margin-bottom: 10%;
+}
+
+.btn-dark{
+	width:22.5rem;
+}
+
+.selectGenre{
+	margin-bottom: 1%;
+}
+
+.btn-light{
+	width: 30.5rem;
+	margin-top: 10px;
+}
+
+.btn-danger{
+	width: 30.5rem;
+	margin-top: 10px;
 }
 
 @media screen and (max-width: 600px) {
@@ -83,7 +115,8 @@ nav:link {
 	}
   
 	h1 {
-	  font-size: 2rem;
+	  font-size: 2.5rem;
+	  margin-bottom: 5%;
 	}
   
 	.container {
@@ -93,5 +126,13 @@ nav:link {
 	.movie {
 	  width: "100%";
 	  margin: 1rem;
+	}
+	
+	.btn-light{
+		width: 15rem;
+	}
+	
+	.btn-danger{
+		width: 15rem;
 	}
   }

@@ -12,17 +12,48 @@ import {
   NavBtn,
   NavBtnLink
 } from './NavbarElements';
-import { useState } from "react";
+import { useState, useEffect} from "react";
 import { useHistory } from "react";
+import LogIn from './LogIn';
+import axios from "../api/axios.js";
+import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+/*import { Route,Switch, BrowserRouter, Navigate } from 'react-router-dom';
+import LogIn from '../LogIn.js';*/
 
-const NavbarComp =(props) =>{
-/* let user = JSON.parse(localStorage.getItem('user-info'));
-  const history = useHistory();
+
+
+const NavbarComp = (props) =>{
+  const [currUser, setCurrUser] = useState("");
+  let navigate = useNavigate();
+  
+  useEffect(() => {
+    currUserName();
+  }, []);
+  
   function logOut() {
     localStorage.clear();
-    history.push('/auth'); // /auth
-  }*/ //logout onClick={logOut}
+    navigate("/");
+  }
 
+  const currUserName = async function() { 
+    const response = await axios.get("http://localhost:3000/api/user/me", {
+      headers: { "x-auth-token": localStorage.getItem("userData") }
+    });
+    setCurrUser(response?.data.name)
+  };
+
+
+/*<BrowserRouter>
+  <Switch>
+  <div className="App">
+    <Route exact path="/(login)" component={LoginContainer}/>
+    <Route component={NavbarComp}/>
+
+  </div>
+  </Switch>
+</BrowserRouter>
+ <*/
 
       return (
         <div className="container-fluid">         
@@ -32,12 +63,11 @@ const NavbarComp =(props) =>{
                 <div className="flex-1"> 
                   <NavLink className="navlink" to={"/home"} activestyle="true">MovieFLIX</NavLink>
                   </div>
-                      <NavDropdown className="navlink" title="Username" //{user && user.name && user.email}
+                      <NavDropdown className="navlink" title={currUser}
                         id="navbarScrollingDropdown">
-                          <NavDropdown.Item>  
-                            Logout
-                          </NavDropdown.Item>
-                          <NavLink className="navlink" to={"/logout"} activestyle="true" >Logout</NavLink>
+                            <NavDropdown.Item onClick={logOut}>  
+                              Logout
+                            </NavDropdown.Item>
                       </NavDropdown>
                    
                       <NavLink className="navlink" to={"/add"} activestyle="true">
