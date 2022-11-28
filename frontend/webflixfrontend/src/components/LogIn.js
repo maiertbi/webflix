@@ -64,7 +64,7 @@ const LogIn = () => {
             <h1>You are logged in!</h1>
             <br />
             <Link to={"/home"}>
-              <button>Go to Home</button>
+              <button>Go to Webflix</button>
             </Link>
           </section>
         ) : (
