@@ -21,7 +21,7 @@ When talking about node we used the following packages:
 
 ### backend
 
-> This setup was only checked if works on Mac OS X.
+> This setup was only checked if it works on Mac OS X!
 
 We used Mongdb-community@6.0. To install and use this please this [docs](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-os-x/).
 
@@ -39,11 +39,29 @@ npm install
 export webflix_jwtPrivateKey=mySecureKey
 ```
 
+```bash
+cd frontend/webflixfrontend/
+npm install
+```
+
 Instead of *mySecureKey* you can instert anything you want. This is just for creating a local variable in order to have a secure key for using JSON Web Token.
 
 Everything should work on the backend side, if mongodbcommunity is running. When testing you just have to execute `node index.js`.
 
 ## using the project
+
+### filling the db
+
+We provided a JSON in order to fill the database with data.
+You will find them in the folder `cd backend/mongodb-sample/`. 
+In MongoDB Compass, create a new database called *webflix* and then create two collections named *movies* and *users*
+Then you can import the sample-data with MongoDB Compass into MongoDB.
+
+However, you can also make everything via Postman!
+
+The password for the user tbimaier@gmail.com is *helloworld234* and for sophie.eberle@gmail.com it is *byemars432*.
+
+### preparing the project
 
 If you want to start the project you have to do the following things.
 
@@ -56,9 +74,10 @@ And in a new terminal (of the webflix folder) execute the following:
 
 ```bash
 cd frontend/webflixfrontend
-npm install
 npm start
 ```
+
+You can now visit the page. Probably on port 3006. 
 
 ## developing
 
@@ -72,25 +91,3 @@ You can find the correct syntax of the http requests in index.js and in the rout
 Be aware that most of the times, when dealing with users, you will get back a JWT. **You have to store it somewhere on the client side (ex. Local Storage or Session Storage).** For every request which deals with certain permissions (deleting a movie, ...) you have to add {x-auth-token: JWT} in the header of the http request. Therefore malicious activity is prevented.
 
 We provided a jsonFile for *Postman* with sample HTTP requests into the backend folder. **It is not guaranteed that the requests will work**. You probably have to change some data in order to get it working.
-
-## Error Messages
-
-Access to fetch - ist fehlgeschlagen wegen der "CORS-policy" - No Access-Controll-Allow-Origin
-
-(wie schon erklärt man will Daten von A nach B fetchen und wird vom Browser geblockt)
-Mit Ajax hat es den Fehler zum Teil behoben vorher hab ich die Url in der app.js datei versucht zu fetchen aber kein erfolg.
-
-Aber neuer Error kam auf weil der (user) token nicht übergeben wurde.
-Fehlermeldung: Request failed with status code 404.
-
-Da hat Fabi gemeint den könnte man im Header hinzufügen. ("header:" befindet sich im File axios.js und das im Ordner api) - Hab es auskommentiert. Dort sollte der User token stehen. Da der bei uns aber eigentlich bei jedem sign in anders ist - hab ich nicht gewusst wie ich den angeben soll.  
-
-mein ansatz gestern war sowas in die Richtung:
-const instance = axios.create({
-  url: "http://localhost:3000",
-  type: 'GET',
-  // Fetch the stored token from localStorage and set in the header
-  headers: {"Authorization": localStorage.getItem('token')}
-});
-
-derzeit kommt man zur login seite in dem man nur localhost:3000 (nach Sign In wird man auf die "http://localhost:3000/home" seite navigiert - darum kümmer ich mich sobald der Login funktioniert)

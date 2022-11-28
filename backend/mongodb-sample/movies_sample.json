@@ -1,0 +1,51 @@
+[{
+  "_id": {
+    "$oid": "63841f085c96188bc7570913"
+  },
+  "picture": "Sorry, pictures are not enabled yet!",
+  "title": "interstellar",
+  "director": "christopher nolan",
+  "published": "2014",
+  "genre": "science fiction",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63841f3a5c96188bc7570915"
+  },
+  "picture": "Sorry, pictures are not enabled yet!",
+  "title": "king richard",
+  "director": "reinaldo marcus green",
+  "published": "2021",
+  "genre": "drama",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63841f745c96188bc7570917"
+  },
+  "picture": "Sorry, pictures are not enabled yet!",
+  "title": "baby driver",
+  "director": "edgar wright",
+  "published": "2017",
+  "genre": "action",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63841fe35c96188bc7570919"
+  },
+  "picture": "Sorry, pictures are not enabled yet!",
+  "title": "inception",
+  "director": "christopher nolan",
+  "published": "2010",
+  "genre": "science fiction",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "638420075c96188bc757091b"
+  },
+  "picture": "Sorry, pictures are not enabled yet!",
+  "title": "american psycho",
+  "director": "christopher nolan",
+  "published": "2000",
+  "genre": "thriller",
+  "__v": 0
+}]
