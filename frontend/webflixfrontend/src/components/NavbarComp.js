@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/Button';
 import {
   Nav,
   NavLink,
+  Hamburger,
   Bars,
   NavMenu,
   NavBtn,
@@ -18,8 +19,6 @@ import LogIn from './LogIn';
 import axios from "../api/axios.js";
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
-/*import { Route,Switch, BrowserRouter, Navigate } from 'react-router-dom';
-import LogIn from '../LogIn.js';*/
 
 
 
@@ -43,39 +42,21 @@ const NavbarComp = (props) =>{
     setCurrUser(response?.data.name)
   };
 
-
-/*<BrowserRouter>
-  <Switch>
-  <div className="App">
-    <Route exact path="/(login)" component={LoginContainer}/>
-    <Route component={NavbarComp}/>
-
-  </div>
-  </Switch>
-</BrowserRouter>
- <*/
-
       return (
-        <div className="container-fluid">         
-            <Navbar>
-              <Navbar.Toggle aria-controls="navbarScroll" />
-                <Navbar.Collapse id="navbarScroll">
-                <div className="flex-1"> 
-                  <NavLink className="navlink" to={"/home"} activestyle="true">MovieFLIX</NavLink>
-                  </div>
-                      <NavDropdown className="navlink" title={currUser}
-                        id="navbarScrollingDropdown">
-                            <NavDropdown.Item onClick={logOut}>  
-                              Logout
-                            </NavDropdown.Item>
+        <> <Nav>
+                  <Navbar>
+                      <NavLink  to={"/home"} activestyle="true">MovieFLIX</NavLink>
+                      <NavLink  to={"/add"} activestyle="true"> + Add movie</NavLink>
+                        
+                        <NavDropdown id="basic-nav-dropdown"  title={currUser}>
+                              <NavDropdown.Item onClick={logOut}>  
+                                Logout
+                              </NavDropdown.Item>
                       </NavDropdown>
                    
-                      <NavLink className="navlink" to={"/add"} activestyle="true">
-                      + Add movie
-                      </NavLink>  
-                </Navbar.Collapse>
-            </Navbar>       
-        </div>
+                 </Navbar>
+            </Nav>    
+        </>
       )
     }
 export default  NavbarComp;

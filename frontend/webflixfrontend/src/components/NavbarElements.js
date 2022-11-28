@@ -3,74 +3,48 @@ import { NavLink as Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Nav = styled.nav`
-  height: 80px;
-  display: flex;
-  justify-content: space-between;
-  padding: 0.5rem calc((100vw - 1000px) / 2);
-  z-index: 10;
+z-index: 14;
+height: 90px;
+display: flex;
+justify-content: space-between;
+padding: 0.18rem calc((100vw - 1000px) / 2);
 `;
 
 export const NavLink = styled(Link)`
-  color: #fff;
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  padding: 0 5rem;
-  cursor: pointer;
-  }
+color: #ffff;
+display: flex;
+cursor: pointer;
+align-items: center;
+text-decoration: none;
+padding: 0 1.2rem;
+height: 100%;
+
+&.active {
+  color: #757677;
+}
 `;
 
-export const Bars = styled(FaBars)`
+export const Hamburger = styled(FaBars)`
   display: none;
-  color: #fff;
+  color: #ffffff;
 
   @media screen and (max-width: 768px) {
     display: block;
-    position: absolute;
+    font-size: 1.9rem;
     top: 0;
     right: 0;
-    transform: translate(-100%, 75%);
-    font-size: 1.8rem;
+    position: absolute;
     cursor: pointer;
-  }
-`;
+    transform: translate(-100%, 75%);
+    `;
 
-export const NavMenu = styled.div`
+  export const Navbar = styled.div`
   display: flex;
   align-items: center;
-  margin-right: -24px;
-  width: 100vw;
-  white-space: nowrap; 
+  margin-right: -25px;
 
   @media screen and (max-width: 768px) {
     display: none;
   }
-`;
-
-export const NavBtn = styled.nav`
-  display: flex;
-  align-items: center;
-  margin-left: 60px;
-
-  @media screen and (max-width: 768px) {
-    display: none;
-  }
-`;
-
-export const NavBtnLink = styled(Link)`
-  border-radius: 4px;
-  background: #256ce1;
-  padding: 10px 22px;
-  color: #fff;
-  outline: none;
-  border: none;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  text-decoration: none;
-
-  &:hover {
-    transition: all 0.2s ease-in-out;
-    background: #fff;
-    color: #fff;
-  }
-`;
+  `;
+  
