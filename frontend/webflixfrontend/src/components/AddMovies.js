@@ -81,8 +81,8 @@ const AddMovies = () => {
                                         <option value="action">Action</option>
                                     </select>
                                 </div>
-                                <div className="col-*-4 sendmovieBtn">
-                                    <button type="button" className="btn btn-light" onClick={addToDb}>
+                                <div className="col-*-4">
+                                    <button type="button" className="btn btn-success" onClick={addToDb}>
                                         Send
                                     </button>
                                 </div>

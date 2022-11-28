@@ -78,26 +78,34 @@ const MovieList = (props) => {
 	return (
 		<>
 		<NavbarComp />
-		 <div className="flex-d justify-content-center">
-			<div className="container movie-app">
+		<div className="wrapper">
+		 	<div className="container">
 				<div className="row">
-					<h1>Movies</h1>
-					<select className="selectGenre" id="searchKey" onChange={(e) => setSearchKey(e.target.value)}>
-						<option value="">Select SearchKey...</option>
-						<option value="title">Title</option>
-						<option value="director">Director</option>
-						<option value="year">Year</option>
-						<option value="genre">Genre</option>
-					</select>
+					<div className="col-*-4">
+						<h1>Movies</h1></div>	
+					<div className="col-*-4">
+						<select className="selectGenre" id="searchKey" onChange={(e) => setSearchKey(e.target.value)}>
+							<option value="">Select SearchKey...</option>
+							<option value="title">Title</option>
+							<option value="director">Director</option>
+							<option value="year">Year</option>
+							<option value="genre">Genre</option>
+						</select>
+						</div>
+					<div className="col-*-4">
 						<input
-							className='form-control'
+							className="form-control searchbar"
 							value={searchValue}
 							onChange={(event) => setSearchValue(event.target.value)}
 							placeholder='Type to search...'>
 						</input>
-				</div>	
-			
-					<div className="row">
+					</div>	
+				</div>
+			</div>
+
+			<div className="container loadMovies">
+				<div className="row">
+					<div className="col-*-4 " align="left"> 
 						{movies.map((movie, id) => (
 							<div key={id} className="image-container justify-content-center">
 								<img src={image} alt='movie'></img> 
@@ -133,9 +141,11 @@ const MovieList = (props) => {
 									</div>
 								</div>
 							))}
-						</div>
 					</div>
 				</div>
+			</div>	
+		</div>
+				
 		</>
 	);
 };

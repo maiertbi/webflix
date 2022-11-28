@@ -58,7 +58,7 @@ const LogIn = () => {
 
   return (
     <>
-      <div className="container-fluid d-flex justify-content-center">
+      <div className="container-fluid">
         {success ? (
           <section>
             <h1>You are logged in!</h1>
@@ -69,7 +69,7 @@ const LogIn = () => {
           </section>
         ) : (
           <section>
-            <div className="row ">
+            <div className="row loginPage" align="center">
               <p
                 ref={errRef}
                 className={errMsg ? "errmsg" : "offscreen"}
@@ -105,7 +105,7 @@ const LogIn = () => {
                   <div >
                     <button
                       type="button"
-                      className="btn btn-light"
+                      className="btn btn-secondary"
                       onClick={login}
                     >
                       Sign In
