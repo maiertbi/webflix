@@ -42,7 +42,7 @@ Everything should work on the backend side, if mongodbcommunity is running. When
 ### filling the db
 
 We provided a JSON in order to fill the database with data.
-You will find them in the folder `cd backend/mongodb-sample/`. 
+You will find them in the folder `cd backend/mongodb-sample/`.
 In MongoDB Compass, create a new database called *webflix* and then create two collections named *movies* and *users*
 Then you can import the sample-data with MongoDB Compass into MongoDB.
 
@@ -66,13 +66,14 @@ cd frontend/webflixfrontend
 npm start
 ```
 
-You can now visit the page. Probably on port 3006. 
+You can now visit the page. Probably on port 3006.
 
 ## app usage
+
 You start on the Sign in page and log in with your user data.
 ![SignIn!](/frontend/webflixfrontend/public/pictures/SignIn.jpg "Sign in page")
 
-If the login was successful, you will be redirected to this page: 
+If the login was successful, you will be redirected to this page:
 ![SignedIn!](/frontend/webflixfrontend/public/pictures/Signed_In.jpg "Signed in page")
 
 After that you have to click on the "Go to Webflix" button to get to the homepage.
@@ -89,6 +90,7 @@ Of course you can also edit films by clicking on the name of the film you are lo
 
 If you want to log out, just click on your username in the navbar, then the dropdown window will open and you can click on logout:
 ![Logout!](/frontend/webflixfrontend/public/pictures/Logout.jpg "logout page")
+
 ## developing
 
 ### how does the backend work
