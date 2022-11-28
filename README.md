@@ -48,7 +48,7 @@ Then you can import the sample-data with MongoDB Compass into MongoDB.
 
 However, you can also make everything via Postman!
 
-The password for the user tbimaier@gmail.com is *helloworld234* and for sophie.eberle@gmail.com it is *byemars432*.
+The password for the user tbimaier@gmail.com is *helloWorld234* and for sophie.eberle@gmail.com it is *byemars432*.
 
 ### preparing the project
 
