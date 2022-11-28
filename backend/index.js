@@ -1,4 +1,5 @@
 const config = require('config');
+const cors = require('cors');
 const movies = require('./routes/movies');
 const user = require('./routes/users');
 const auth = require('./routes/auth');
@@ -17,9 +18,25 @@ mongoose.connect('mongodb://localhost/webflix')
   .then(() => console.log('Connected to MongoDB...'))
   .catch(err => console.error('Could not connect to MongoDB...'));
 
+// making cors options
+const whitelist = ["http://localhost:3000"]
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin || whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error("Not allowed by CORS"))
+    }
+  },
+  credentials: true,
+}
+
+
 
 // using everything
+app.use(cors()) 
 app.use(express.json());
+
 app.use('/api/movies', movies);
 app.use('/api/user', user);
 app.use('/api/auth', auth);
