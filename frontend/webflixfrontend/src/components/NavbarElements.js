@@ -4,8 +4,9 @@ import styled from 'styled-components';
 
 export const Nav = styled.nav`
 z-index: 14;
-height: 90px;
+height: 60px;
 display: flex;
+background-color: #212426;
 justify-content: space-between;
 padding: 0.18rem calc((100vw - 1000px) / 2);
 `;
@@ -23,7 +24,7 @@ height: 100%;
   color: #757677;
 }
 `;
-
+/*
 export const Hamburger = styled(FaBars)`
   display: none;
   color: #ffffff;
@@ -36,7 +37,7 @@ export const Hamburger = styled(FaBars)`
     position: absolute;
     cursor: pointer;
     transform: translate(-100%, 75%);
-    `;
+    `;*/
 
   export const Navbar = styled.div`
   display: flex;

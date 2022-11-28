@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import NavbarComp from './NavbarComp.js';
+import { Alert } from "bootstrap";
 
 
 
@@ -79,6 +80,7 @@ const MovieComponent = () => {
         setErrMsg("Failed");
       }
     }
+    alert('You have sucessfully updated a movie');
   };
 
   const deleteMovie = async function () {
@@ -88,6 +90,7 @@ const MovieComponent = () => {
     } catch (err) {
       console.error(err?.response);
     }
+    alert('You have sucessfully deleted a movie');
   };
 
   return (

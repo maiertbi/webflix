@@ -58,7 +58,7 @@ const LogIn = () => {
 
   return (
     <>
-      <div className="container-fluid">
+      <div className="container">
         {success ? (
           <section>
             <h1>You are logged in!</h1>

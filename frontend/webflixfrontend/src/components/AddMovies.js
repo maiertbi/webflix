@@ -55,7 +55,7 @@ const AddMovies = () => {
         <div className="container">
         {success ? (
           <section>
-            <h1>Movie added!</h1>
+            <h1>You have added a new film!</h1>
           </section>
         ) : (
           <section>
